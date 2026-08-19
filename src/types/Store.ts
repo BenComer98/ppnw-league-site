@@ -1,9 +1,8 @@
-export interface Store {
-    name: String;
-    city: String;
-    address?: String;
+import type { Location } from "./Location";
+
+export interface Store extends Location {
     image?: MediaImage;
-    entryFee?: Number;
-    rounds?: String;
-    description?: String;
+    entryFee?: number;
+    rounds?: string;
+    description?: string;
 }
