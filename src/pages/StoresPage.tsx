@@ -1,13 +1,13 @@
 import StorePanel from '../objects/StorePanel';
-import './Stores.css';
+import './StoresPage.css';
 
-function Stores() {
+function StoresPage() {
     return (
-        <div className="Stores">
-            <div className="Stores-header">
+        <div className="StoresPage">
+            <div className="StoresPage-header">
                 <h1>STORES</h1>
             </div>
-            <div className="Stores-list">
+            <div className="StoresPage-list">
                 <StorePanel store={{name: "Phoenix Games", city: "Capitol Hill"}}/>
                 <StorePanel store={{name: "Meeples Games", city: "West Seattle"}}/>
                 <StorePanel store={{name: "Over the Brick", city: "Kirkland"}}/>
@@ -16,4 +16,4 @@ function Stores() {
     )
 }
 
-export default Stores;
+export default StoresPage;
