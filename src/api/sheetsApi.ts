@@ -19,6 +19,6 @@ export async function getRecords(): Promise<PlayerEventRecordRaw[]> {
   if (!result.success) {
     throw new Error(result.error || "API request failed");
   }
-
+  
   return result.data ?? [];
 }
