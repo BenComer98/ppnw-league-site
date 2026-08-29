@@ -3,12 +3,12 @@ import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.tsx'
 
-import { PlayerEventRecordsProvider } from './context/DataContext.tsx';
+import { ClientProvider } from './context/ClientContext.tsx';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <PlayerEventRecordsProvider>
+    <ClientProvider>
       <App />
-    </PlayerEventRecordsProvider>
+    </ClientProvider>
   </StrictMode>,
 )
