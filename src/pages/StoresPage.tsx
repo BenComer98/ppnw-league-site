@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from 'react';
 import { ClientContext } from '../context/ClientContext';
 import StorePanel from '../objects/StorePanel';
 import './StoresPage.css';
-import { getStores, getStoresWithWeeklies } from '../api/supabaseApi';
+import { getStoresWithWeeklies } from '../api/supabaseApi';
 import type { Store, StoreWithWeeklies } from '../types/db_entities/SupabaseTypes';
 
 function StoresPage() {
@@ -12,7 +12,7 @@ function StoresPage() {
 
     useEffect(() => {
         if (!context) {
-            setLoading(false);
+            setLoading(true);
             return;
         }
 

@@ -1,6 +1,5 @@
 import {
     createContext,
-    useContext,
     useState,
     type ReactNode
 } from 'react';
@@ -22,14 +21,4 @@ export function ClientProvider({ children }: { children: ReactNode }) {
             {children}
         </ClientContext.Provider>
     );
-}
-
-export function useplayerEventData() {
-    const context = useContext(ClientContext);
-
-    if (!context) {
-        throw new Error("useplayerEventData must be used within a playerEventDataProvider");
-    }
-
-    return context;
 }
