@@ -7,7 +7,8 @@ import type {
     Archetype,
     Store,
     Weekly,
-    StoreWithWeeklies
+    StoreWithWeeklies,
+    PlayerWithFKs
 } from "../types/db_entities/SupabaseTypes";
 
 
@@ -91,6 +92,22 @@ export async function getPlayersWithNameLike(
         .from('players')
         .select('*')
         .ilike('name', nameMatch);
+
+    if (error) throw error;
+
+    return data ?? [];
+}
+
+export async function getPlayersWithFKs(
+    client: SupabaseClient
+): Promise<PlayerWithFKs[]> {
+    const { data, error } = await client
+        .from('players')
+        .select(`
+            *,
+            favorite_deck:decks!players_favorite_deck_id_fkey (*),
+            home_store:stores!players_home_store_id_fkey (*)
+        `);
 
     if (error) throw error;
 

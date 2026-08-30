@@ -11,3 +11,8 @@ export type Store = Tables<'stores'>;
 export type StoreWithWeeklies = Store & {
     weeklies: Weekly[];
 }
+
+export type PlayerWithFKs = Player & {
+    favorite_deck: Deck;
+    home_store: Store;
+}
