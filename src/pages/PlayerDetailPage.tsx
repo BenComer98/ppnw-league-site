@@ -26,49 +26,49 @@ export default function PlayerDetailPage() {
     const context = useContext(ClientContext);
 
     useEffect(() => {
-    if (!player_id) {
-        setInvalidPlayerId(true);
-        setLoading(false);
-        return;
-    }
+        if (!player_id) {
+            setInvalidPlayerId(true);
+            setLoading(false);
+            return;
+        }
 
-    let id: number;
-
-    try {
-        id = safeConvertStoN(player_id);
-    } catch (error) {
-        setInvalidPlayerId(true);
-        setLoading(false);
-        return;
-    }
-
-    setPlayerId(id);
-
-    if (!context) {
-        return;
-    }
-
-    async function fetchData() {
-        setLoading(true);
+        let id: number;
 
         try {
-            const [playerData, eventData] = await Promise.all([
-                getPlayerById(context!.client, id),
-                getPlayerEventDataByPlayerId(context!.client, id)
-            ]);
-
-            setPlayerInfo(playerData);
-            setPlayerEventData(eventData);
-            setPlayerAdvanced(calculateAdvancedStats(eventData));
+            id = safeConvertStoN(player_id);
         } catch (error) {
-            console.error("Failed to fetch player data:", error);
-        } finally {
+            setInvalidPlayerId(true);
             setLoading(false);
+            return;
         }
-    }
 
-    fetchData();
-}, [context, player_id]);
+        setPlayerId(id);
+
+        if (!context) {
+            return;
+        }
+
+        async function fetchData() {
+            setLoading(true);
+
+            try {
+                const [playerData, eventData] = await Promise.all([
+                    getPlayerById(context!.client, id),
+                    getPlayerEventDataByPlayerId(context!.client, id)
+                ]);
+
+                setPlayerInfo(playerData);
+                setPlayerEventData(eventData);
+                setPlayerAdvanced(calculateAdvancedStats(eventData));
+            } catch (error) {
+                console.error("Failed to fetch player data:", error);
+            } finally {
+                setLoading(false);
+            }
+        }
+
+        fetchData();
+    }, [context, player_id]);
 
 
     if (loading) {
